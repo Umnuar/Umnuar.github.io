@@ -187,9 +187,39 @@ body.is-loading #main {
     color: rgba(220, 220, 220, 0.7);
     padding: 0;
     margin: 0;
+    /* Dùng flexbox để quản lý các dòng văn bản */
+    display: flex;
+    flex-direction: column;
 }
+
+/* Ẩn các dòng văn bản ban đầu và chuẩn bị cho animation */
+.text-line {
+    opacity: 0;
+    transform: translateX(-20px); /* Bắt đầu từ vị trí bên trái */
+    display: block; /* Đảm bảo mỗi span chiếm một dòng */
+    margin-bottom: 0.5em; /* Khoảng cách giữa các dòng */
+    font-family: 'Inter', sans-serif;
+    font-size: 1em;
+    line-height: 1.75;
+    font-weight: 400;
+    color: #ffffff;
+}
+
+/* Loại bỏ margin-bottom cho dòng cuối cùng nếu cần */
+.text-line:last-child {
+    margin-bottom: 0;
+}
+
+/* Animation cho từng dòng văn bản */
+@keyframes fadeInFromLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 #windowText mark {
-    color: rgb(255, 255, 255);
+    color: rgb(71, 135, 231);
     background-color: transparent;
 }
 #windowText a {

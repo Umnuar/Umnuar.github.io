@@ -180,15 +180,10 @@
         if ($body.classList.contains('is-playing')) return;
 
         $body.classList.remove('is-loading');
-
-        const startPlaying = () => {
-             $body.classList.add('is-playing');
-             $main.classList.add('is-playing');
-        };
-
-        on('click', startPlaying, { once: true });
-        on('touchstart', startPlaying, { once: true });
-        on('keydown', startPlaying, { once: true });
+        $body.classList.add('is-playing');
+        $main.classList.add('is-playing');
+        // Kích hoạt animation văn bản khi trang bắt đầu chơi
+        animateTextLines();
     }
 
     /**
@@ -270,6 +265,16 @@
             dateTimeElement.textContent = `${formattedDate} ${formattedTime}`;
         }
     }
+
+    // --- Text line animation ---
+    function animateTextLines() {
+        const textLines = $$('.text-line'); // Lấy tất cả các dòng văn bản
+        textLines.forEach((line, index) => {
+            // Áp dụng animation cho mỗi dòng với độ trễ khác nhau
+            line.style.animation = `fadeInFromLeft 1.6s ease-out forwards ${index * 0.2}s`;
+        });
+    }
+
 
     // --- INITIALIZATION ---
 
